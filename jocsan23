@@ -1,0 +1,100 @@
+import random
+print("Bien venidos a mi programa")
+trabajadores=["Juan Perez","Maria Garcia","Carlos Lopez","Ana Martinez","Pedro Rodriguez","Laura Hernandez","Miguel Sanchez","Isabel Gomez", "Francisco Diaz","Elena Fernandez"]
+sueldos=[]
+def asignacion () :
+    for i in trabajadores :
+        sueldos.append(random.randint(300000,2500000)) 
+    for i in trabajadores :
+        ubicacion=trabajadores.index(i)
+        print(i,":",sueldos[ubicacion]) 
+def clasificacion () :
+    nombres=[]
+    sueldo=[]
+    nombres1=[]
+    sueldo1=[]
+    nombres2=[]
+    sueldo2=[]
+    total1=0
+    total2=0
+    total3=0
+    for j in sueldos :
+        if j<800000:
+            total1 +=1
+            ubicacion2=sueldos.index(j)
+            nombres1.append(trabajadores[ubicacion2])
+            sueldo1.append(j) 
+        elif j>=800000 and j<=2000000:
+            total2 +=1
+            ubicacion2=sueldos.index(j)
+            nombres1.append(trabajadores[ubicacion2])
+            sueldo1.append(j)
+        elif j>2000000:
+            total3 +=1
+            ubicacion3=sueldos.index(j)
+            nombres2.append(trabajadores[ubicacion3])
+            sueldo2.append(j)
+    print("")
+    print("Sueldos menores a $800.000 TOTAl:",total1)
+    print("NOMBRE SUELDO")
+    for a in nombres:
+        ubi=nombres.index(a)
+        print(nombres[ubi],":",sueldo[ubi])
+    print("Sueldos entre $800.000 y $2.000.000 TOTAL:",total2)
+    print("NOMBRE SUELDO")
+    for b in nombres1:
+        ubi1=nombres1.index(b)
+        print(nombres1[ubi1],":",sueldo1[ubi1])
+    print("")
+    print("Sueldos mayores a $2.000.000 TOTAL:",total3)
+    print("NOMBRE SUELDO")
+    for c in nombres2:
+        ubi2=nombres2.index(c)
+        print(nombres2[ubi2],":",sueldo2[ubi2])
+def estadisticas():
+    sueldos.sort()
+    print("Sueldo mas alto:",sueldos[-1])
+    print("Sueldo mas bajo:",sueldos[0])
+    suma=0
+    multiplicacion=1
+    for i in sueldos:
+        suma+=i
+        multiplicacion*=i
+    print("Promedio de sueldos:",suma/10)
+    print("Media geometrica:",pow(multiplicacion, 1/10))
+def reportes():
+    print("NOMBRE   SUELDO BASE   DESCUENTO SALUD   DESCUENTO AFP   SUELDO LIQUIDO")    
+    for i in sueldos:
+        ubica=sueldos.index(i)
+        ubica1=trabajadores[ubica]
+        descuentosalud=i*0.07
+        descuentoafp=i*0.12
+        print(f"{ubica1}\t {i}\t{descuentosalud}\t{descuentoafp}\t{i-descuentoafp-descuentosalud}")
+
+while True:
+    print("MENU")
+    print("1.-Asignar sueldos aleatorios.")
+    print("2.-Clasificar sueldos.")
+    print("3.-Ver estadisticas.")
+    print("4.-Reporte de sueldos.")
+    print("5.-Salir del programa.")
+    res=int(input("Seleccione la accion a realizar segun el numero en el menu: "))
+    if res==1:
+        asignacion()
+    if res==2:
+        clasificacion()
+    if res==3:
+        estadisticas()
+    if res==4:
+        reportes()
+        open('archico.txt', 'w')
+        with open('archivo.txt', 'w')as archivo:
+            archivo.write(str("NOMBRE   SUELDO BASE   DESCUENTO   SALUD   DESCUENTO AFP   SUELDO LIQUIDO"))
+            for i in sueldos:
+                ubica=sueldos.index(i)
+                ubica1=trabajadores[ubica]
+                descuentosalud=i*0.07
+                descuentoafp=i*0.12
+                archivo.write(f"\n{ubica1}\t {i}\t{descuentosalud}\t{descuentoafp}\t{i-descuentoafp-descuentosalud}")
+    if res==5:
+        print(f"Gracias por utilizar mi programa!!\nSaliendo...\nDesarrollador Jocsan Sepulveda\nRUT 20.905.078-1") 
